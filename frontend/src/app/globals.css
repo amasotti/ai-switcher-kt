@@ -9,7 +9,7 @@
   }
 
   .ai-slider {
-    @apply w-full accent-blue-500;
+    @apply w-full accent-blue-600;
   }
 
   .ai-label {
@@ -26,13 +26,13 @@
     focus:ring-blue-500;
   }
 
-  .ai-button-secondary {
-    @apply ai-button bg-gray-800 hover:bg-gray-700 text-white
-    focus:ring-gray-500;
-  }
+  /*.ai-button-secondary {*/
+  /*  @apply ai-button bg-gray-800 hover:bg-gray-700 text-white*/
+  /*  focus:ring-gray-500;*/
+  /*}*/
 
   .message-user {
-    @apply bg-blue-600 text-white;
+    @apply bg-blue-500 text-white;
   }
 
   .message-bot {
@@ -43,13 +43,13 @@
     @apply space-y-6 p-6 border-b border-gray-700;
   }
 
-  /* Override Prism theme variables for dark mode */
-  .prose pre[class*="language-"] {
-    @apply bg-gray-800 text-white rounded-md p-4 my-2 overflow-x-auto;
-  }
+  /*!* Override Prism theme variables for dark mode *!*/
+  /*.prose pre[class*="language-"] {*/
+  /*  @apply bg-gray-800 text-white rounded-md p-4 my-2 overflow-x-auto;*/
+  /*}*/
 
   .prose code[class*="language-"] {
-    @apply text-sm font-mono;
+    @apply font-mono;
   }
 
   /* Customize token colors if needed */
