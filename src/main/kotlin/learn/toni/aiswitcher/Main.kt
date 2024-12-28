@@ -1,4 +1,4 @@
-package learn.toni.ai_switcher
+package learn.toni.aiswitcher
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

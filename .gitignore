@@ -46,3 +46,8 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+
+### APPLICATION ###
+sessions/*.json
+app.log
