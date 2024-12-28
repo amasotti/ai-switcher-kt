@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file (created with git cliff).
 
+## [0.1.0] - 2024-12-28
+
+[Compare with last version](https://github.com/amasotti/ai-switcher-kt/compare/806de9f1bcf29bcc205b81ee2004f27429fa8310..e5dbebbb0e340e0f2f97035d89989cf6f4ee275f)
+### 🚀 Features
+
+- Modularize backend AI Services ([e5dbebb](https://github.com/amasotti/ai-switcher-kt/commit/e5dbebbb0e340e0f2f97035d89989cf6f4ee275f)) - by _Antonio Masotti_
+
 ## [0.0.1] - 2024-12-28
 
 ### 🚀 Features

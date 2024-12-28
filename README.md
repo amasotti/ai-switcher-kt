@@ -59,10 +59,10 @@ interactions.
 
 | Endpoint                          | Method | Description                                   |
 |-----------------------------------|--------|-----------------------------------------------|
-| `/api/create-session`             | POST   | Creates a new chat session.                   |
-| `/api/get-session/{sessionId}`    | GET    | Retrieves a chat session by ID.               |
-| `/api/delete-session/{sessionId}` | POST   | Deletes a chat session by ID.                 |
-| `/api/generate`                   | POST   | Sends a prompt to the AI and gets a response. |
+| `/index/create-session`             | POST   | Creates a new chat session.                   |
+| `/index/get-session/{sessionId}`    | GET    | Retrieves a chat session by ID.               |
+| `/index/delete-session/{sessionId}` | POST   | Deletes a chat session by ID.                 |
+| `/index/generate`                   | POST   | Sends a prompt to the AI and gets a response. |
 
 ---
 

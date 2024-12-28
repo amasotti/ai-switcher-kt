@@ -1,0 +1,147 @@
+openapi: "3.1.0"
+info:
+  title: "ai_switcher_kt API"
+  description: "ai_switcher_kt API"
+  version: "1.0.0"
+servers:
+  - url: "https://ai_switcher_kt"
+paths:
+  /api/generate:
+    post:
+      summary: "POST api/generate"
+      operationId: "generate"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GenerateRequest"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /api/create-session:
+    post:
+      summary: "POST api/create-session"
+      operationId: "createSession"
+      parameters:
+        - name: "provider"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "string"
+  /api/delete-session/{sessionId}:
+    post:
+      summary: "POST api/delete-session/{sessionId}"
+      operationId: "deleteSession"
+      parameters:
+        - name: "sessionId"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+  /api/get-sessions:
+    get:
+      summary: "GET api/get-sessions"
+      operationId: "getSessions"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Session"
+  /api/get-session/{sessionId}:
+    get:
+      summary: "GET api/get-session/{sessionId}"
+      operationId: "getSession"
+      parameters:
+        - name: "sessionId"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Session"
+components:
+  schemas:
+    GenerateRequest:
+      type: "object"
+      properties:
+        sessionId:
+          type: "string"
+        apiName:
+          type: "string"
+        systemPrompt:
+          type: "string"
+        userPrompt:
+          type: "string"
+        temperature:
+          type: "number"
+          format: "double"
+        maxTokens:
+          type: "integer"
+          format: "int32"
+        topP:
+          type: "number"
+          format: "double"
+      required:
+        - "sessionId"
+        - "apiName"
+        - "systemPrompt"
+        - "userPrompt"
+        - "temperature"
+        - "maxTokens"
+        - "topP"
+    ChatMessage:
+      type: "object"
+      properties:
+        role:
+          type: "string"
+          enum:
+            - "USER"
+            - "SYSTEM"
+            - "ASSISTANT"
+        content:
+          type: "string"
+        timestamp:
+          type: "string"
+      required:
+        - "role"
+        - "content"
+        - "timestamp"
+    Session:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        provider:
+          type: "string"
+        messages:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ChatMessage"
+      required:
+        - "id"
+        - "provider"
+        - "messages"
