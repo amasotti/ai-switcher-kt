@@ -10,7 +10,7 @@ export default function Home() {
     const [messages, setMessages] = useState<Array<{role: string, content: string, timestamp: string}>>([])
     const [settings, setSettings] = useState<AISettings>({
         provider: 'DeepSeek',
-        temperature: 0.7,
+        temperature: 0.0,
         maxTokens: 150,
         topP: 1.0
     })

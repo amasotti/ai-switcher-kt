@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file (created with git cliff).
 
+## [1.0.0] - 2024-12-28
+
+[Compare with last version](https://github.com/amasotti/ai-switcher-kt/compare/48f0075327548aa9659c0bfd0ff38e712f21f0da..875f6b5beab3fc471c26296d55defa86f122cf1b)
+### 🚀 Features
+
+- Completely rewrite the frontend ([875f6b5](https://github.com/amasotti/ai-switcher-kt/commit/875f6b5beab3fc471c26296d55defa86f122cf1b)) - by _Antonio Masotti_
+
+## [0.2.0] - 2024-12-28
+
+[Compare with last version](https://github.com/amasotti/ai-switcher-kt/compare/e5dbebbb0e340e0f2f97035d89989cf6f4ee275f..48f0075327548aa9659c0bfd0ff38e712f21f0da)
+### 🚀 Features
+
+- New frontend with next.js ([48f0075](https://github.com/amasotti/ai-switcher-kt/commit/48f0075327548aa9659c0bfd0ff38e712f21f0da)) - by _Antonio Masotti_
+
 ## [0.1.0] - 2024-12-28
 
 [Compare with last version](https://github.com/amasotti/ai-switcher-kt/compare/806de9f1bcf29bcc205b81ee2004f27429fa8310..e5dbebbb0e340e0f2f97035d89989cf6f4ee275f)
