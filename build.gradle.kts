@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.springBoot)
     alias(libs.plugins.springDependencyManagement)
     alias(libs.plugins.kotlinJvm)
+    alias(libs.plugins.kotlinOpen) apply true
     alias(libs.plugins.detekt) apply true
 }
 

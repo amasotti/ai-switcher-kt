@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>InvalidPackageDeclaration:Main.kt$package learn.toni.ai_switcher</ID>
+    <ID>MatchingDeclarationName:Main.kt$AiSwitcherApplication</ID>
+    <ID>PackageNaming:Main.kt$package learn.toni.ai_switcher</ID>
+    <ID>SpreadOperator:Main.kt$(*args)</ID>
+  </CurrentIssues>
+</SmellBaseline>

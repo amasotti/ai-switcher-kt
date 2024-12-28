@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.1.0"
+kotlin = "2.0.10"
 detekt = "1.23.7"
 junitPlatform = "1.10.2"
 springBoot = "3.4.1"
@@ -20,3 +20,4 @@ kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt"}
 springBoot = { id = "org.springframework.boot", version.ref = "springBoot" }
 springDependencyManagement = { id = "io.spring.dependency-management", version = "1.1.7" }
+kotlinOpen = { id = "org.jetbrains.kotlin.plugin.allopen", version.ref = "kotlin" }
