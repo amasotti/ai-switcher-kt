@@ -43,16 +43,33 @@
     @apply space-y-6 p-6 border-b border-gray-700;
   }
 
-  .prose pre {
-    @apply bg-gray-800 text-white rounded-md p-4 my-2;
+  /* Override Prism theme variables for dark mode */
+  .prose pre[class*="language-"] {
+    @apply bg-gray-800 text-white rounded-md p-4 my-2 overflow-x-auto;
   }
 
-  .prose code:not(pre code) {
-    @apply bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded;
+  .prose code[class*="language-"] {
+    @apply text-sm font-mono;
   }
 
-  .prose a {
-    @apply text-blue-600 hover:text-blue-800;
+  /* Customize token colors if needed */
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    @apply text-gray-400;
+  }
+
+  .token.function {
+    @apply text-yellow-300;
+  }
+
+  .token.keyword {
+    @apply text-pink-400;
+  }
+
+  .token.string {
+    @apply text-green-300;
   }
 
   .message-bot .prose {

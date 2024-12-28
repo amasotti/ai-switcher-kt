@@ -1,7 +1,16 @@
 'use client'
 
-import { marked } from 'marked'
+import {marked, Tokens} from 'marked'
 import DOMPurify from 'dompurify'
+import Prism from 'prismjs'
+import 'prismjs/themes/prism-tomorrow.css' // or any other theme
+import 'prismjs/components/prism-typescript'
+import 'prismjs/components/prism-javascript'
+import 'prismjs/components/prism-python'
+import 'prismjs/components/prism-bash'
+import 'prismjs/components/prism-rust'
+import 'prismjs/components/prism-java'
+import 'prismjs/components/prism-kotlin'
 
 interface Message {
     role: string
@@ -13,7 +22,29 @@ interface ChatHistoryProps {
     messages: Message[]
 }
 
+const renderer = {
+    code(token: Tokens.Code): string {
+        const { text, lang, escaped } = token
+        if (lang && Prism.languages[lang]) {
+            const highlighted = Prism.highlight(
+                text,
+                Prism.languages[lang],
+                lang
+            )
+            return `<pre><code class="language-${lang}">${highlighted}</code></pre>`
+        }
+        return `<pre><code>${escaped ? text : marked.parseInline(text)}</code></pre>`
+    },
+
+    codespan(token: Tokens.Codespan): string {
+        return `<code class="inline-code">${token.text}</code>`
+    }
+}
+
+marked.use({ renderer })
+
 export default function ChatHistory({ messages }: ChatHistoryProps) {
+
     const renderMarkdown = (content: string) => {
         const html = marked(content)
 
