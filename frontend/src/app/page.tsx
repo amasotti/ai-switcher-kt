@@ -4,6 +4,7 @@ import Sidebar, { AISettings } from '@/components/Sidebar'
 import ChatHistory from '@/components/ChatHistory'
 import ChatInput from '@/components/ChatInput'
 import { useState } from 'react'
+import Header from "@/components/Header";
 
 export default function Home() {
     const [currentSessionId, setCurrentSessionId] = useState<string | null>(null)
@@ -23,7 +24,8 @@ export default function Home() {
                 onSettingsChange={setSettings}
             />
             <div className="flex-1 flex flex-col">
-                <ChatHistory messages={messages} />
+                <Header currentSessionId={currentSessionId}/>
+                <ChatHistory messages={messages}/>
                 <ChatInput
                     sessionId={currentSessionId}
                     settings={settings}

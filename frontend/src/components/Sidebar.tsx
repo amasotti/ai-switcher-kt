@@ -20,7 +20,7 @@ export default function Sidebar({ currentSessionId, onSessionChange, onSettingsC
     const [sessions, setSessions] = useState<Array<{ id: string, provider: string }>>([])
     const [settings, setSettings] = useState<AISettings>({
         provider: 'DeepSeek',
-        temperature: 0.7,
+        temperature: 0.0,
         maxTokens: 150,
         topP: 1.0
     })
@@ -54,7 +54,7 @@ export default function Sidebar({ currentSessionId, onSessionChange, onSettingsC
     }
 
     return (
-        <aside className="w-80 bg-gray-900 text-white flex flex-col h-screen">
+        <aside className="w-80 bg-gray-800 text-white flex flex-col h-screen">
             {/* Settings Section */}
             <div className="sidebar-section">
                 <h3 className="text-xl font-bold mb-6">AI Settings</h3>
