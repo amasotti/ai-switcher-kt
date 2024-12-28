@@ -108,6 +108,10 @@ interactions.
 
 ---
 
+## API Docs:
+
+- [DeepSeek API](https://api-docs.deepseek.com/api/deepseek-api)
+
 ## Acknowledgments
 
 - **Spring Boot**: For the robust and scalable backend framework.
