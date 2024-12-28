@@ -1,0 +1,22 @@
+[versions]
+kotlin = "2.1.0"
+detekt = "1.23.7"
+junitPlatform = "1.10.2"
+springBoot = "3.4.1"
+
+[libraries]
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+spring-thymeleaf = {module = "org.springframework.boot:spring-boot-starter-thymeleaf", version.ref = "springBoot"}
+spring-web = {module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBoot"}
+jackson-kotlin = {module = "com.fasterxml.jackson.module:jackson-module-kotlin", version = "2.13.0"}
+kotlin-reflect = {module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin"}
+spring-devtools = {module = "org.springframework.boot:spring-boot-devtools", version.ref = "springBoot"}
+spring-starter-test = {module = "org.springframework.boot:spring-boot-starter-test", version.ref = "springBoot"}
+kotlin-test-junit5 = {module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "kotlin"}
+junit-platform-launcher = {module = "org.junit.platform:junit-platform-launcher", version.ref = "junitPlatform"}
+
+[plugins]
+kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt"}
+springBoot = { id = "org.springframework.boot", version.ref = "springBoot" }
+springDependencyManagement = { id = "io.spring.dependency-management", version = "1.1.7" }
