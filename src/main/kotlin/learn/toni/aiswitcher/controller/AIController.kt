@@ -48,8 +48,8 @@ class AIController(
     }
 
     @PostMapping("/create-session")
-    fun createSession(): String {
-        return sessionService.createSession()
+    fun createSession(@RequestParam provider: String): String {
+        return sessionService.createSession(provider)
     }
 
     @GetMapping("/get-sessions")

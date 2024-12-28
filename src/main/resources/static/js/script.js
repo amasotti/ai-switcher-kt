@@ -10,7 +10,7 @@ function loadSessions() {
             data.forEach(session => {
                 const option = document.createElement("option");
                 option.value = session.id;
-                option.textContent = session.id; // You can customize this to show session names or timestamps
+                option.textContent = `${session.id} (${session.provider})`; // Display session ID and provider
                 sessionSelector.appendChild(option);
             });
         });
@@ -18,14 +18,14 @@ function loadSessions() {
 
 // Create a new session
 document.getElementById("new-session-btn").addEventListener("click", () => {
-    fetch("/api/create-session", { method: "POST" })
+    const provider = document.getElementById("api-selector").value; // Get the selected provider
+    fetch(`/api/create-session?provider=${provider}`, { method: "POST" })
         .then(response => response.text())
         .then(sessionId => {
             currentSessionId = sessionId;
             loadSessions();
         });
 });
-
 // Switch session
 document.getElementById("session-selector").addEventListener("change", (event) => {
     currentSessionId = event.target.value;
