@@ -1,37 +1,30 @@
-'use client'
+'use client';
 
-import Sidebar, { AISettings } from '@/components/Sidebar'
-import ChatHistory from '@/components/ChatHistory'
-import ChatInput from '@/components/ChatInput'
-import { useState } from 'react'
-import Header from "@/components/Header";
+import Sidebar, { AISettings } from '@/components/Sidebar';
+import ChatHistory from '@/components/ChatHistory';
+import ChatInput from '@/components/ChatInput';
+import { SessionProvider } from '@/contexts/SessionContext';
+import { useState } from 'react';
+import Header from '@/components/Header';
 
 export default function Home() {
-    const [currentSessionId, setCurrentSessionId] = useState<string | null>(null)
-    const [messages, setMessages] = useState<Array<{role: string, content: string, timestamp: string}>>([])
-    const [settings, setSettings] = useState<AISettings>({
-        provider: 'DeepSeek',
-        temperature: 0.0,
-        maxTokens: 150,
-        topP: 1.0
-    })
+  const [settings, setSettings] = useState<AISettings>({
+    provider: 'DeepSeek',
+    temperature: 0.0,
+    maxTokens: 150,
+    topP: 1.0,
+  });
 
-    return (
-        <main className="flex h-screen bg-gray-50">
-            <Sidebar
-                currentSessionId={currentSessionId}
-                onSessionChange={setCurrentSessionId}
-                onSettingsChange={setSettings}
-            />
-            <div className="flex-1 flex flex-col">
-                <Header currentSessionId={currentSessionId}/>
-                <ChatHistory messages={messages}/>
-                <ChatInput
-                    sessionId={currentSessionId}
-                    settings={settings}
-                    onMessageSent={(msg) => setMessages(prev => [...prev, msg])}
-                />
-            </div>
-        </main>
-    )
+  return (
+    <SessionProvider>
+      <main className='flex h-screen bg-gray-50'>
+        <Sidebar onSettingsChange={setSettings} />
+        <div className='flex flex-1 flex-col'>
+          <Header />
+          <ChatHistory />
+          <ChatInput settings={settings} />
+        </div>
+      </main>
+    </SessionProvider>
+  );
 }

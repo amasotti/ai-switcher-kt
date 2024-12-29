@@ -1,18 +1,18 @@
 export interface Session {
-    id: string;
-    provider: string;
-    messages: Message[];
+  id: string;
+  provider: string;
+  messages: Message[];
 }
 
 export interface Message {
-    role: 'user' | 'system' | 'assistant';
-    content: string;
-    timestamp: string;
+  role: 'user' | 'system' | 'assistant';
+  content: string;
+  timestamp: string;
 }
 
 export interface AISettings {
-    temperature: number;
-    maxTokens: number;
-    topP: number;
-    provider: string;
+  temperature: number;
+  maxTokens: number;
+  topP: number;
+  provider: string;
 }
