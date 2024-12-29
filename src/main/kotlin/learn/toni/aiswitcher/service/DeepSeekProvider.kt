@@ -33,8 +33,13 @@ class DeepSeekProvider: AIServiceProvider {
         val payload = mapOf(
             "model" to "deepseek-chat",
             "messages" to messages.map { mapOf("role" to it.role.value, "content" to it.content) },
+            "temperature" to temperature,
+            "max_tokens" to maxTokens,
+            //"top_p" to topP,
             "stream" to false
         )
+
+        logger.debug("Payload to DeepSeek: {}", payload)
 
         val headers = org.springframework.http.HttpHeaders().apply {
             set("Authorization", "Bearer $apiKey")
