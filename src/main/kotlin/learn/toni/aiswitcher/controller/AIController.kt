@@ -22,8 +22,9 @@ class AIController(
     @PostMapping("/generate")
     fun generate(@RequestBody request: GenerateRequest): String {
         logger.debug("Generating response for session: ${request.sessionId} with API: ${request.apiName}")
-        val session = sessionService.getSession(request.sessionId)
-        val messages = session.messages.toMutableList()
+        //val session = sessionService.getSession(request.sessionId)
+        // Optionally we can get all messages from the session
+        val messages = mutableListOf<ChatMessage>()
 
         logger.info("Request received for session: ${request.sessionId}")
         logger.info("System prompt: ${request.systemPrompt}")

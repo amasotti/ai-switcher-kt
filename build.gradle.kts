@@ -17,7 +17,6 @@ repositories {
 
 dependencies {
     implementation(libs.spring.web)
-    implementation(libs.spring.thymeleaf)
     implementation(libs.jackson.kotlin)
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.reflect)

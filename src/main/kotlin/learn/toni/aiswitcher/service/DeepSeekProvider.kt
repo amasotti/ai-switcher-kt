@@ -4,6 +4,7 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import learn.toni.aiswitcher.model.ChatMessage
 import learn.toni.aiswitcher.model.api.GenerateResponse
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpEntity
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
@@ -13,13 +14,12 @@ class DeepSeekProvider: AIServiceProvider {
     private val restTemplate = RestTemplate()
     private val objectMapper = jacksonObjectMapper()
     private val logger = LoggerFactory.getLogger(DeepSeekProvider::class.java)
+    @Value("\${apikeys.deepseek}") lateinit var apiKey: String
+    private val apiUrl = "https://api.deepseek.com/chat/completions"
 
     init {
         logger.info("DeepSeekProvider initialized")
-        require (System.getenv("DEEPSEEK_API_KEY") != null) { "DEEPSEEK_API_KEY environment variable not set" }
     }
-
-    private val apiUrl = "https://api.deepseek.com/chat/completions"
 
 
     override fun generateResponse(
@@ -28,7 +28,6 @@ class DeepSeekProvider: AIServiceProvider {
         maxTokens: Int,
         topP: Double
     ): String {
-        val apiKey = System.getenv("DEEPSEEK_API_KEY")
 
         val payload = mapOf(
             "model" to "deepseek-chat",
@@ -39,12 +38,14 @@ class DeepSeekProvider: AIServiceProvider {
             "stream" to false
         )
 
-        logger.debug("Payload to DeepSeek: {}", payload)
+        logger.info("Payload to DeepSeek: {}", payload)
 
         val headers = org.springframework.http.HttpHeaders().apply {
             set("Authorization", "Bearer $apiKey")
             set("Content-Type", "application/json")
         }
+
+        logger.info("Headers to DeepSeek: {}", headers)
 
         val request = HttpEntity(payload, headers)
         val response = restTemplate.postForObject(apiUrl, request, String::class.java)
