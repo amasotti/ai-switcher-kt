@@ -11,8 +11,8 @@ export default function Home() {
   const [settings, setSettings] = useState<AISettings>({
     provider: 'DeepSeek',
     temperature: 0.0,
-    maxTokens: 150,
-    topP: 1.0,
+    maxTokens: 3000,
+    topP: 0.1,
   });
 
   return (

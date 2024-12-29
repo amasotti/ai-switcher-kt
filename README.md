@@ -75,8 +75,8 @@ interactions.
     "apiName": "DeepSeek",
     "systemPrompt": "You are a helpful assistant.",
     "userPrompt": "Hello!",
-    "temperature": 0.7,
-    "maxTokens": 150,
+    "temperature": 0.0,
+    "maxTokens": 3000,
     "topP": 1.0
 }
 ```
