@@ -26,8 +26,12 @@ export default function AISettingsPanel({
       <h3 className='mb-6 text-xl font-bold'>AI Settings</h3>
 
       <div>
-        <label className='ai-label'>Provider</label>
+        <label htmlFor='provider' className='ai-label'>
+          Provider
+        </label>
         <select
+          id='provider'
+          aria-labelledby='provider'
           value={settings.provider}
           onChange={(e) =>
             setSettings((s) => ({ ...s, provider: e.target.value }))
@@ -41,8 +45,11 @@ export default function AISettingsPanel({
       </div>
 
       <div>
-        <label className='ai-label'>Temperature ({settings.temperature})</label>
+        <label htmlFor='temperature' className='ai-label'>
+          Temperature ({settings.temperature})
+        </label>
         <input
+          id='temperature'
           type='range'
           min='0'
           max='1'
@@ -59,8 +66,11 @@ export default function AISettingsPanel({
       </div>
 
       <div>
-        <label className='ai-label'>Max Tokens</label>
+        <label htmlFor='maxTokens' className='ai-label'>
+          Max Tokens
+        </label>
         <input
+          id='maxTokens'
           type='number'
           value={settings.maxTokens}
           onChange={(e) =>
@@ -71,8 +81,11 @@ export default function AISettingsPanel({
       </div>
 
       <div>
-        <label className='ai-label'>Top P ({settings.topP})</label>
+        <label htmlFor='topP' className='ai-label'>
+          Top P ({settings.topP})
+        </label>
         <input
+          id='topP'
           type='range'
           min='0.1'
           max='1'
