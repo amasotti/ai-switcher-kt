@@ -7,9 +7,8 @@ import com.anthropic.models.MessageParam
 import com.anthropic.models.Model
 import learn.toni.aiswitcher.exceptions.AnthropicException
 import learn.toni.aiswitcher.model.ChatMessage
-import learn.toni.aiswitcher.model.toAnthropicRole
+import learn.toni.aiswitcher.model.Role
 import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.toJavaDuration
@@ -86,5 +85,11 @@ class AnthropicProvider : AIServiceProvider {
         .role(role.toAnthropicRole())
         .content(MessageParam.Content.ofString(content))
         .build()
+
+    private fun Role.toAnthropicRole() = when (this) {
+        Role.USER -> MessageParam.Role.USER
+        Role.SYSTEM -> MessageParam.Role.ASSISTANT
+        Role.ASSISTANT -> MessageParam.Role.ASSISTANT
+    }
 }
 

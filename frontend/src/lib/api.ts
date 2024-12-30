@@ -62,7 +62,7 @@ export async function generateResponse(
 }
 
 export async function deleteSession(sessionId: string): Promise<void> {
-  await api.post(`delete-session/${sessionId}`);
+  await api.delete(`delete-session/${sessionId}`);
 }
 
 export async function getSessionHistory(sessionId: string): Promise<Session> {

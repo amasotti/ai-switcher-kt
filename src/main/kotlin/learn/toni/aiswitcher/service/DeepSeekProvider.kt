@@ -1,62 +1,85 @@
 package learn.toni.aiswitcher.service
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import learn.toni.aiswitcher.exceptions.DeepSeekException
 import learn.toni.aiswitcher.model.ChatMessage
 import learn.toni.aiswitcher.model.api.DeepSeekResponse
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpEntity
+import org.springframework.http.MediaType
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 
 @Service
-class DeepSeekProvider: AIServiceProvider {
-    private val restTemplate = RestTemplate()
+class DeepSeekProvider(
+    @Value("\${apikeys.deepseek}") private val apiKey: String,
+) : AIServiceProvider {
+    private val logger = LoggerFactory.getLogger(javaClass)
     private val objectMapper = jacksonObjectMapper()
-    private val logger = LoggerFactory.getLogger(DeepSeekProvider::class.java)
-    @Value("\${apikeys.deepseek}") lateinit var apiKey: String
-    private val apiUrl = "https://api.deepseek.com/chat/completions"
+    private val restTemplate: RestTemplate = RestTemplate()
+
+    companion object {
+        private const val API_URL = "https://api.deepseek.com/chat/completions"
+        private const val MODEL = "deepseek-chat"
+    }
 
     init {
         logger.info("DeepSeekProvider initialized")
     }
-
 
     override fun generateResponse(
         messages: List<ChatMessage>,
         temperature: Double,
         maxTokens: Int,
         topP: Double
-    ): String {
+    ): String = try {
+        val request = createRequest(messages, temperature, maxTokens)
+        val response = restTemplate.postForObject(API_URL, request, String::class.java)
+            ?: throw DeepSeekException("Null response received from DeepSeek")
 
+        logger.debug("Response from DeepSeek: $response")
+
+        parseResponse(response)
+    } catch (e: Exception) {
+        logger.error("Error generating response from DeepSeek", e)
+        throw DeepSeekException("Failed to generate response", e)
+    }
+
+    private fun createRequest(
+        messages: List<ChatMessage>,
+        temperature: Double,
+        maxTokens: Int
+    ): HttpEntity<Map<String, Any>> {
         val payload = mapOf(
-            "model" to "deepseek-chat",
-            "messages" to messages.map { mapOf("role" to it.role.value, "content" to it.content) },
+            "model" to MODEL,
+            "messages" to messages.map { it.toDeepSeekMessage() },
             "temperature" to temperature,
             "max_tokens" to maxTokens,
-            //"top_p" to topP,
             "stream" to false
         )
 
-        logger.info("Payload to DeepSeek: {}", payload)
-
-        val headers = org.springframework.http.HttpHeaders().apply {
-            set("Authorization", "Bearer $apiKey")
-            set("Content-Type", "application/json")
+        val headers = HttpHeaders().apply {
+            setBearerAuth(apiKey)
+            contentType = MediaType.APPLICATION_JSON
         }
 
-        logger.info("Headers to DeepSeek: {}", headers)
-
-        val request = HttpEntity(payload, headers)
-        val response = restTemplate.postForObject(apiUrl, request, String::class.java)
-
-        logger.info("Response from DeepSeek: $response")
-
-        val generatedResponse = objectMapper.readValue<DeepSeekResponse>(
-            response.toString(),
-            DeepSeekResponse::class.java
-        )
-
-        return generatedResponse.choices.firstOrNull()?.message?.content ?: "No response generated"
+        return HttpEntity(payload, headers)
+            .also { logger.debug("Created request with payload: $payload") }
     }
+
+    private fun parseResponse(response: String): String =
+        objectMapper.readValue(response, DeepSeekResponse::class.java)
+            .choices
+            .firstOrNull()
+            ?.message
+            ?.content
+            ?: "No response from DeepSeek"
+
+    private fun ChatMessage.toDeepSeekMessage() = mapOf(
+        "role" to role.value,
+        "content" to content
+    )
 }
+
