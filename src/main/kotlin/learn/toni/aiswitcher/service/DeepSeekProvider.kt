@@ -39,7 +39,7 @@ class DeepSeekProvider(
         val response = restTemplate.postForObject(API_URL, request, String::class.java)
             ?: throw DeepSeekException("Null response received from DeepSeek")
 
-        logger.debug("Response from DeepSeek: $response")
+        logger.debug("DeepSeekChoices from DeepSeek: $response")
 
         parseResponse(response)
     } catch (e: Exception) {

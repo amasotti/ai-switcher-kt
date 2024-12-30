@@ -140,10 +140,11 @@ If you want more control over the installation, you can follow these steps:
 - [DeepSeek API](https://api-docs.deepseek.com/api/deepseek-api)
 - [Claude / Anthropic](https://docs.anthropic.com/en/api/getting-started)
 - [ChatGPT API](https://platform.openai.com/docs/overview)
+- [Perplexity API](https://docs.perplexity.ai/home)
 
 ## Acknowledgments
 
-- **DeepSeek, OpenAI, Anthropic**: For their Generative AI APIs.
+- **DeepSeek, OpenAI, Anthropic, Perplexity**: For their Generative AI APIs.
 
 ---
 

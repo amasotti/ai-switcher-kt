@@ -1,0 +1,30 @@
+### Generate a completion
+POST https://api.perplexity.ai/chat/completions
+Authorization: Bearer {{$env.PERPLEXITY_API_KEY}}
+Content-Type: application/json
+
+{
+  "model": "llama-3.1-sonar-large-128k-online",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Be precise and concise."
+    },
+    {
+      "role": "user",
+      "content": "What is the difference between machine learning and deep learning?"
+    }
+  ],
+  "max_tokens": 300,
+  "temperature": 1.0,
+  "search_domain_filter": [],
+  "return_images": false,
+  "return_related_questions": false,
+  "search_recency_filter": "month",
+  "top_k": 0,
+  "stream": false,
+  "presence_penalty": 0,
+  "frequency_penalty": 1
+}
+
+###

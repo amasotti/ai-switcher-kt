@@ -10,6 +10,7 @@ import java.io.File
 import java.time.LocalDateTime
 import learn.toni.aiswitcher.model.Session
 import learn.toni.aiswitcher.model.ChatMessage
+import java.time.format.DateTimeFormatter.ofPattern
 
 @Service
 class SessionService {
@@ -30,7 +31,8 @@ class SessionService {
     }
 
     fun createSession(provider: String): String = try {
-        val sessionId = LocalDateTime.now().toString()
+        var sessionId = LocalDateTime.now()
+            .format(ofPattern("yyyy-MM-dd_HH:mm:ss"))
         val session = Session(sessionId, provider)
         saveSession(session)
         sessionId
