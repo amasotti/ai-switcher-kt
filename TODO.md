@@ -3,12 +3,12 @@
 
 ## Backend
 
-- Load past conversations
-- Better support for advanced paramters
-- Other 3 Providers
+- [x] Load past conversations
+- [ ] Better support for advanced paramters
+- [x] Other 3 Providers
 
 ## Frontend
 
-- Token count / usage
-- Streaming API (Websockets)
-- Name sessions
+- [ ] Token count / usage
+- [ ] Streaming API (Websockets)
+- [ ] Name sessions
