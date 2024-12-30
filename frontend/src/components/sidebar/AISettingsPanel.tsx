@@ -1,10 +1,9 @@
 'use client';
 
-import {useSettings} from "@/contexts/SettingsContext";
-
+import { useSettings } from '@/contexts/SettingsContext';
 
 export default function AISettingsPanel() {
-    const { settings, updateSettings } = useSettings();
+  const { settings, updateSettings } = useSettings();
   return (
     <div className='sidebar-section'>
       <h3 className='mb-6 text-xl font-bold'>AI Settings</h3>
@@ -18,7 +17,7 @@ export default function AISettingsPanel() {
           aria-labelledby='provider'
           value={settings.provider}
           onChange={(e) =>
-              updateSettings({ ...settings, provider: e.target.value })
+            updateSettings({ ...settings, provider: e.target.value })
           }
           className='ai-input'
         >
@@ -40,8 +39,10 @@ export default function AISettingsPanel() {
           step='0.1'
           value={settings.temperature}
           onChange={(e) =>
-              updateSettings({ ...settings, temperature: parseFloat(e.target.value) }
-            )
+            updateSettings({
+              ...settings,
+              temperature: parseFloat(e.target.value),
+            })
           }
           className='ai-slider'
         />
@@ -56,7 +57,7 @@ export default function AISettingsPanel() {
           type='number'
           value={settings.maxTokens}
           onChange={(e) =>
-              updateSettings({ ...settings, maxTokens: parseInt(e.target.value) })
+            updateSettings({ ...settings, maxTokens: parseInt(e.target.value) })
           }
           className='ai-input'
         />
@@ -74,7 +75,7 @@ export default function AISettingsPanel() {
           step='0.1'
           value={settings.topP}
           onChange={(e) =>
-              updateSettings({ ...settings, topP: parseFloat(e.target.value) })
+            updateSettings({ ...settings, topP: parseFloat(e.target.value) })
           }
           className='ai-slider'
         />

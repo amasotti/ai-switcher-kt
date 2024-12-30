@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import { generateResponse } from '@/lib/api';
 import { useSession } from '@/contexts/SessionContext';
-import {useSettings} from "@/contexts/SettingsContext";
+import { useSettings } from '@/contexts/SettingsContext';
 
 export default function ChatInput() {
   const { currentSessionId, addMessage } = useSession();
-  const {settings} = useSettings();
+  const { settings } = useSettings();
   const [systemPrompt, setSystemPrompt] = useState('');
   const [userPrompt, setUserPrompt] = useState('');
   const [isLoading, setIsLoading] = useState(false);

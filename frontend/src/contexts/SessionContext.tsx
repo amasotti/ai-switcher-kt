@@ -7,8 +7,8 @@ import {
   ReactNode,
   useEffect,
 } from 'react';
-import {createSession, getSessions} from '@/lib/api';
-import {useSettings} from "@/contexts/SettingsContext";
+import { createSession, getSessions } from '@/lib/api';
+import { useSettings } from '@/contexts/SettingsContext';
 
 interface Message {
   role: string;
@@ -44,11 +44,14 @@ export function SessionProvider({ children }: { children: ReactNode }) {
   const addSession = async () => {
     try {
       const sessionId = await createSession(settings.provider);
-      setSessions(prev => [...prev, {
-        id: sessionId,
-        provider: settings.provider,
-        messages: [],
-      }]);
+      setSessions((prev) => [
+        ...prev,
+        {
+          id: sessionId,
+          provider: settings.provider,
+          messages: [],
+        },
+      ]);
       setCurrentSessionId(sessionId);
     } catch (error) {
       console.error('Failed to create session:', error);

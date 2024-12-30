@@ -4,7 +4,7 @@ import { marked, Tokens } from 'marked';
 import DOMPurify from 'dompurify';
 import { useSession } from '@/contexts/SessionContext';
 import Prism from 'prismjs';
-import 'prismjs/themes/prism-tomorrow.css'; // or any other theme
+import 'prismjs/themes/prism-tomorrow.css';
 import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-python';
@@ -12,16 +12,8 @@ import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-rust';
 import 'prismjs/components/prism-java';
 import 'prismjs/components/prism-kotlin';
-
-interface Message {
-  role: string;
-  content: string;
-  timestamp: string;
-}
-
-interface ChatHistoryProps {
-  messages: Message[];
-}
+import 'prismjs/components/prism-go';
+import 'prismjs/components/prism-csharp';
 
 const renderer = {
   code(token: Tokens.Code): string {
@@ -32,7 +24,6 @@ const renderer = {
     }
     return `<pre><code>${escaped ? text : marked.parseInline(text)}</code></pre>`;
   },
-
   codespan(token: Tokens.Codespan): string {
     return `<code class="inline-code">${token.text}</code>`;
   },

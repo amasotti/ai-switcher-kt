@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <header className='border-b bg-gray-800 px-6 py-4 text-white'>
       <h1 className='text-2xl font-semibold'>
-        Toni's AI Switcher
+        Toni&apos;s AI Switcher
         <span className='ml-2 text-sm text-white'>
           {currentSessionId
             ? `Session: ${currentSessionId}`
