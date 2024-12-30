@@ -7,7 +7,7 @@ import {
   ReactNode,
   useEffect,
 } from 'react';
-import { createSession, getSessions } from '@/lib/api';
+import { createSession, getSessions, deleteSession } from '@/lib/api';
 import { useSettings } from '@/contexts/SettingsContext';
 
 interface Message {
@@ -24,6 +24,7 @@ interface SessionContextType {
   sessions: Session[];
   currentSessionId: string | null;
   addSession: () => void;
+  deleteSession: (sessionId: string) => void;
   setCurrentSession: (id: string) => void;
   addMessage: (sessionId: string, message: Message) => void;
   loadSessionMessages: (sessionId: string) => Message[];
@@ -57,6 +58,16 @@ export function SessionProvider({ children }: { children: ReactNode }) {
       console.error('Failed to create session:', error);
     }
   };
+
+  const deleteCurrentSession = async (sessionId: string) => {
+    try {
+      await deleteSession(sessionId);
+      setSessions((prev) => prev.filter((session) => session.id !== sessionId));
+      setCurrentSessionId(null);
+    } catch (error) {
+      console.error('Failed to delete session:', error);
+    }
+  }
 
   const setCurrentSession = (id: string) => {
     setCurrentSessionId(id);
@@ -95,6 +106,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
         sessions,
         currentSessionId,
         addSession,
+        deleteSession: deleteCurrentSession,
         setCurrentSession,
         addMessage,
         loadSessionMessages,

@@ -39,9 +39,11 @@ export async function getSessions(): Promise<Session[]> {
   return api.get('get-sessions').json();
 }
 
-export async function getSession(sessionId: string): Promise<Session> {
-  return api.get(`get-session/${sessionId}`).json();
-}
+// TODO: If the session become many, I will need to just import the metadata and retrieve the chat history only
+// when the user clicks on the session
+// export async function getSession(sessionId: string): Promise<Session> {
+//   return api.get(`get-session/${sessionId}`).json();
+// }
 
 export async function createSession(provider: string): Promise<string> {
   return api
@@ -65,6 +67,6 @@ export async function deleteSession(sessionId: string): Promise<void> {
   await api.delete(`delete-session/${sessionId}`);
 }
 
-export async function getSessionHistory(sessionId: string): Promise<Session> {
-  return api.get(`get-session/${sessionId}`).json();
-}
+// export async function getSessionHistory(sessionId: string): Promise<Session> {
+//   return api.get(`get-session/${sessionId}`).json();
+// }
