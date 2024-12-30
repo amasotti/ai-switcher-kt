@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file (created with git cliff).
 
+## [1.2.0] - 2024-12-30
+
+[Compare with last version](https://github.com/amasotti/ai-switcher-kt/compare/cd413ffa983b0b9845b788535b038922ff6cb520..717dad7fd8ae2d8c699c686aeca6425190a280f8)
+### 🚀 Features
+
+- Add start script ([167d398](https://github.com/amasotti/ai-switcher-kt/commit/167d398ebb0f82c4368b1a4e2f64e8133bf098a0)) - by _Antonio Masotti_
+
+- *(security)* Add dependabot configuration ([717dad7](https://github.com/amasotti/ai-switcher-kt/commit/717dad7fd8ae2d8c699c686aeca6425190a280f8)) - by _Antonio Masotti_
+
+### 🚜 Refactor
+
+- Refactor AnthropicProvider.kt to be more Kotlin idiomatic ([e990a51](https://github.com/amasotti/ai-switcher-kt/commit/e990a51d205006f7b86e9c02c4e23efe193c19b5)) - by _Antonio Masotti_
+
+- Refactor to be more Kotlin idiomatic ([b96d644](https://github.com/amasotti/ai-switcher-kt/commit/b96d6443a9535108a0cae4fcde631ae521a1885d)) - by _Antonio Masotti_
+
 ## [1.1.0] - 2024-12-30
 
 [Compare with last version](https://github.com/amasotti/ai-switcher-kt/compare/875f6b5beab3fc471c26296d55defa86f122cf1b..cd413ffa983b0b9845b788535b038922ff6cb520)
