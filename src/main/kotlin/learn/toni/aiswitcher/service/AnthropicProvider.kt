@@ -1,7 +1,7 @@
 package learn.toni.aiswitcher.service
 
 import com.anthropic.client.AnthropicClient;
-import com.anthropic.client.okhttp.AnthropicOkHttpClient;
+import com.anthropic.client.okhttp.AnthropicOkHttpClient
 import com.anthropic.models.MessageCreateParams
 import com.anthropic.models.MessageParam
 import com.anthropic.models.Model
@@ -23,13 +23,23 @@ class AnthropicProvider : AIServiceProvider {
     init {
         logger.info("Anthropic Provider initialized")
     }
+
     override fun generateResponse(
         messages: List<ChatMessage>,
         temperature: Double,
         maxTokens: Int,
         topP: Double
     ): String = try {
-        val params = createMessageParams(messages, temperature, maxTokens)
+        // Extract system message and user/assistant messages
+        val (systemMessage, conversationMessages) = messages.partition { it.role == Role.SYSTEM }
+
+        val params = createMessageParams(
+            systemPrompt = systemMessage.firstOrNull()?.content,
+            messages = conversationMessages,
+            temperature = temperature,
+            maxTokens = maxTokens
+        )
+
         val response = client
             .messages()
             .create(params)
@@ -48,6 +58,33 @@ class AnthropicProvider : AIServiceProvider {
         throw AnthropicException("Failed to generate response", e)
     }
 
+    private fun createMessageParams(
+        systemPrompt: String?,
+        messages: List<ChatMessage>,
+        temperature: Double,
+        maxTokens: Int
+    ) = MessageCreateParams.builder()
+        .model(Model.CLAUDE_3_5_SONNET_LATEST)
+        .maxTokens(maxTokens.toLong())
+        .temperature(temperature)
+        .apply {
+            systemPrompt?.let { system(it) }
+        }
+        .messages(messages.map { it.toMessageParam() })
+        .build()
+        .also { logger.debug("Created params: {}", it) }
+
+    private fun ChatMessage.toMessageParam() = MessageParam.builder()
+        .role(role.toAnthropicRole())
+        .content(MessageParam.Content.ofString(content))
+        .build()
+
+    private fun Role.toAnthropicRole() = when (this) {
+        Role.USER -> MessageParam.Role.USER
+        Role.SYSTEM -> error("System role is handled separately by Anthropic")
+        Role.ASSISTANT -> MessageParam.Role.ASSISTANT
+    }
+
     /**
      * Create a new Anthropic client with sensible defaults
      *
@@ -63,33 +100,5 @@ class AnthropicProvider : AIServiceProvider {
         .build()
         .also { logger.debug("Client initialized: {}", it) }
 
-    /**
-     * Create a new MessageCreateParams object with the given messages, temperature and maxTokens
-     */
-    private fun createMessageParams(
-        messages: List<ChatMessage>,
-        temperature: Double,
-        maxTokens: Int
-    ) = MessageCreateParams.builder()
-        .model(Model.CLAUDE_3_5_SONNET_LATEST)
-        .maxTokens(maxTokens.toLong())
-        .temperature(temperature)
-        .messages(messages.map { it.toMessageParam() })
-        .build()
-        .also { logger.debug("Created params: {}", it) }
-
-    /**
-     * Convert a ChatMessage to a MessageParam
-     */
-    private fun ChatMessage.toMessageParam() = MessageParam.builder()
-        .role(role.toAnthropicRole())
-        .content(MessageParam.Content.ofString(content))
-        .build()
-
-    private fun Role.toAnthropicRole() = when (this) {
-        Role.USER -> MessageParam.Role.USER
-        Role.SYSTEM -> MessageParam.Role.ASSISTANT
-        Role.ASSISTANT -> MessageParam.Role.ASSISTANT
-    }
 }
 

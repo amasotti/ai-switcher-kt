@@ -16,7 +16,7 @@ class AIService(private val aiServiceLocator: AIServiceLocator) {
         messages: List<ChatMessage>,
         temperature: Double,
         maxTokens: Int,
-        topP: Double
+        topP: Double,
     ): String {
         logger.debug("Generating response for API: $apiName")
         val provider = aiServiceLocator.getService(apiName)

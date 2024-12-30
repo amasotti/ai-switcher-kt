@@ -70,11 +70,17 @@ class AIController(
             ResponseEntity.internalServerError().build()
         }
 
-    private fun buildMessageList(request: GenerateRequest): MutableList<ChatMessage> =
-        mutableListOf(
-            ChatMessage(Role.SYSTEM, request.systemPrompt),
-            ChatMessage(Role.USER, request.userPrompt)
-        )
+    private fun buildMessageList(request: GenerateRequest): MutableList<ChatMessage> {
+
+        val previousMessages = sessionService.getSession(request.sessionId).messages
+        val messages = mutableListOf<ChatMessage>()
+
+        messages.addAll(previousMessages)
+        messages.add(ChatMessage(Role.USER, request.userPrompt))
+        messages.add(ChatMessage(Role.SYSTEM, request.systemPrompt))
+
+        return messages
+    }
 
     private fun generateAIResponse(
         request: GenerateRequest,
