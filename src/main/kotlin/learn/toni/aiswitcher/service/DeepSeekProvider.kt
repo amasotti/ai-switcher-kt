@@ -2,7 +2,7 @@ package learn.toni.aiswitcher.service
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import learn.toni.aiswitcher.model.ChatMessage
-import learn.toni.aiswitcher.model.api.GenerateResponse
+import learn.toni.aiswitcher.model.api.DeepSeekResponse
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpEntity
@@ -52,9 +52,9 @@ class DeepSeekProvider: AIServiceProvider {
 
         logger.info("Response from DeepSeek: $response")
 
-        val generatedResponse = objectMapper.readValue<GenerateResponse>(
+        val generatedResponse = objectMapper.readValue<DeepSeekResponse>(
             response.toString(),
-            GenerateResponse::class.java
+            DeepSeekResponse::class.java
         )
 
         return generatedResponse.choices.firstOrNull()?.message?.content ?: "No response generated"

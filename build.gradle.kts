@@ -20,6 +20,7 @@ dependencies {
     implementation(libs.jackson.kotlin)
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlin.reflect)
+    implementation(libs.anthropic.sdk)
     developmentOnly(libs.spring.devtools)
     testImplementation(libs.spring.starter.test)
     testImplementation(libs.kotlin.test.junit5)

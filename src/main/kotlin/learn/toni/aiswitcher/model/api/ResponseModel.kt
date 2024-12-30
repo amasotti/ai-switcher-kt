@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import learn.toni.aiswitcher.model.ChatMessage
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class GenerateResponse(
+data class DeepSeekResponse(
     val id: String,
     val `object`: String,
     val created: Long,
@@ -22,6 +22,8 @@ data class DeepSeekUsage (
     @JsonProperty("prompt_cache_hit_tokens") val promptCacheHitTokens: Float,
     @JsonProperty("prompt_cache_miss_tokens") val promptCacheMissTokens: Float
 )
+
+// ------------------------------------------------------------
 
 data class Response(
     val index: Int,
