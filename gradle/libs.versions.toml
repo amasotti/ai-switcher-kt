@@ -1,13 +1,13 @@
 [versions]
 kotlin = "2.0.10"
 detekt = "1.23.7"
-junitPlatform = "1.10.2"
+junitPlatform = "1.11.4"
 springBoot = "3.4.1"
 
 [libraries]
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
 spring-web = {module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBoot"}
-jackson-kotlin = {module = "com.fasterxml.jackson.module:jackson-module-kotlin", version = "2.13.0"}
+jackson-kotlin = {module = "com.fasterxml.jackson.module:jackson-module-kotlin", version = "2.18.2"}
 kotlin-reflect = {module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin"}
 spring-devtools = {module = "org.springframework.boot:spring-boot-devtools", version.ref = "springBoot"}
 spring-starter-test = {module = "org.springframework.boot:spring-boot-starter-test", version.ref = "springBoot"}
