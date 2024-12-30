@@ -1,12 +1,10 @@
 # Generative AI Switcher (Kotlin)
 
 A Kotlin-based web application built with **Spring Boot** that allows you to switch between multiple Generative AI APIs
-(e.g., DeepSeek, ChatGPT, Claude) and customize AI settings. 
+(e.g., DeepSeek, ChatGPT, Claude) and customize AI settings. 🤖
 
 The app features a clean and structured frontend with a side menu for AI parameters and a main content area for chat 
 interactions.
-
-(And of course this project is built with the help of several AIs 🤖)
 
 ---
 
@@ -15,7 +13,6 @@ interactions.
 - **Multi-Chat Sessions**: Create, switch, and delete chat sessions.
 - **Customizable AI Settings**: Adjust parameters like `temperature`, `max_tokens`, and `top_p`.
 - **Multiple APIs**: Choose between different Generative AI APIs (DeepSeek, ChatGPT, Claude).
-- **Responsive Design**: Side menu and main content area adapt to different screen sizes.
 - **Chat History**: Stores chat sessions locally for retrieval and visualization.
 - **Clean JSON Serialization**: Uses Kotlin data classes and Jackson for seamless API communication.
 
@@ -30,7 +27,25 @@ interactions.
 
 ---
 
+## Run it
+
+**Pre-requisites**: 
+You will need these (or at least 1) environment variables set:
+
+```
+   DEEPSEEK_API_KEY=your_deepseek_api_key
+   CHATGPT_API_KEY=your_chatgpt_api_key
+   CLAUDE_API_KEY=your_claude_api_key
+```
+
+```
+# Just use the bash script to start both frontend and backend 
+./start.sh
+```
+
 ## Installation
+
+If you want more control over the installation, you can follow these steps:
 
 1. Clone the repository:
    ```bash
@@ -38,21 +53,32 @@ interactions.
    cd generative-ai-switcher-kotlin
    ```
 
-2. Set up environment variables:
-   Create a `.env` file in the root directory and add your API keys:
-   ```
-   DEEPSEEK_API_KEY=your_deepseek_api_key
-   CHATGPT_API_KEY=your_chatgpt_api_key
-   CLAUDE_API_KEY=your_claude_api_key
-   ```
 
-3. Run the application:
+### Backend
+
+
+1. Run the application:
+```bash
+./gradlew bootRun
+```
+
+### Frontend
+
+1. Open a new terminal and navigate to the `frontend` directory:
    ```bash
-   ./gradlew bootRun
+   cd frontend
    ```
-
-4. Open your browser and navigate to `http://localhost:8080`.
-
+   
+2. Install the dependencies:
+   ```bash
+   pnpm install
+   ```
+   
+3. Start the frontend:
+   ```bash
+    pnpm run build start
+    ```
+   
 ---
 
 ## API Endpoints
