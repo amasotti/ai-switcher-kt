@@ -2,15 +2,12 @@
 
 import { useState } from 'react';
 import { generateResponse } from '@/lib/api';
-import { AISettings } from '@/components/Sidebar';
 import { useSession } from '@/contexts/SessionContext';
+import {useSettings} from "@/contexts/SettingsContext";
 
-interface ChatInputProps {
-  settings: AISettings;
-}
-
-export default function ChatInput({ settings }: ChatInputProps) {
+export default function ChatInput() {
   const { currentSessionId, addMessage } = useSession();
+  const {settings} = useSettings();
   const [systemPrompt, setSystemPrompt] = useState('');
   const [userPrompt, setUserPrompt] = useState('');
   const [isLoading, setIsLoading] = useState(false);

@@ -7,24 +7,23 @@ import {
   ReactNode,
   useEffect,
 } from 'react';
-import { getSessions } from '@/lib/api';
+import {createSession, getSessions} from '@/lib/api';
+import {useSettings} from "@/contexts/SettingsContext";
 
 interface Message {
   role: string;
   content: string;
   timestamp: string;
 }
-
 interface Session {
   id: string;
   provider: string;
   messages: Message[];
 }
-
 interface SessionContextType {
   sessions: Session[];
   currentSessionId: string | null;
-  addSession: (session: Session) => void;
+  addSession: () => void;
   setCurrentSession: (id: string) => void;
   addMessage: (sessionId: string, message: Message) => void;
   loadSessionMessages: (sessionId: string) => Message[];
@@ -33,6 +32,7 @@ interface SessionContextType {
 const SessionContext = createContext<SessionContextType | undefined>(undefined);
 
 export function SessionProvider({ children }: { children: ReactNode }) {
+  const { settings } = useSettings();
   const [sessions, setSessions] = useState<Session[]>([]);
   const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -41,9 +41,18 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     loadSessions();
   }, []);
 
-  const addSession = (session: Session) => {
-    setSessions((prev) => [...prev, session]);
-    setCurrentSessionId(session.id);
+  const addSession = async () => {
+    try {
+      const sessionId = await createSession(settings.provider);
+      setSessions(prev => [...prev, {
+        id: sessionId,
+        provider: settings.provider,
+        messages: [],
+      }]);
+      setCurrentSessionId(sessionId);
+    } catch (error) {
+      console.error('Failed to create session:', error);
+    }
   };
 
   const setCurrentSession = (id: string) => {

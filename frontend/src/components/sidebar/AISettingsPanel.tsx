@@ -1,26 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { AISettings } from '@/types';
+import {useSettings} from "@/contexts/SettingsContext";
 
-interface AISettingsPanelProps {
-  onSettingsChange: (settings: AISettings) => void;
-}
 
-export default function AISettingsPanel({
-  onSettingsChange,
-}: AISettingsPanelProps) {
-  const [settings, setSettings] = useState<AISettings>({
-    provider: 'DeepSeek',
-    temperature: 0.0,
-    maxTokens: 3000,
-    topP: 1.0,
-  });
-
-  useEffect(() => {
-    onSettingsChange(settings);
-  }, [settings, onSettingsChange]);
-
+export default function AISettingsPanel() {
+    const { settings, updateSettings } = useSettings();
   return (
     <div className='sidebar-section'>
       <h3 className='mb-6 text-xl font-bold'>AI Settings</h3>
@@ -34,13 +18,13 @@ export default function AISettingsPanel({
           aria-labelledby='provider'
           value={settings.provider}
           onChange={(e) =>
-            setSettings((s) => ({ ...s, provider: e.target.value }))
+              updateSettings({ ...settings, provider: e.target.value })
           }
           className='ai-input'
         >
           <option value='DeepSeek'>DeepSeek</option>
           <option value='OpenAI'>OpenAI</option>
-          <option value='Claude'>Claude</option>
+          <option value='Anthropic'>Claude</option>
         </select>
       </div>
 
@@ -56,10 +40,8 @@ export default function AISettingsPanel({
           step='0.1'
           value={settings.temperature}
           onChange={(e) =>
-            setSettings((s) => ({
-              ...s,
-              temperature: parseFloat(e.target.value),
-            }))
+              updateSettings({ ...settings, temperature: parseFloat(e.target.value) }
+            )
           }
           className='ai-slider'
         />
@@ -74,7 +56,7 @@ export default function AISettingsPanel({
           type='number'
           value={settings.maxTokens}
           onChange={(e) =>
-            setSettings((s) => ({ ...s, maxTokens: parseInt(e.target.value) }))
+              updateSettings({ ...settings, maxTokens: parseInt(e.target.value) })
           }
           className='ai-input'
         />
@@ -92,7 +74,7 @@ export default function AISettingsPanel({
           step='0.1'
           value={settings.topP}
           onChange={(e) =>
-            setSettings((s) => ({ ...s, topP: parseFloat(e.target.value) }))
+              updateSettings({ ...settings, topP: parseFloat(e.target.value) })
           }
           className='ai-slider'
         />
