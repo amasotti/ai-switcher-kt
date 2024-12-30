@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file (created with git cliff).
 
+## [1.3.2] - 2024-12-30
+
+[Compare with last version](https://github.com/amasotti/ai-switcher-kt/compare/0697d899e99aa13a21bef9ebfc63fe4e7dde7e7e..d42be41bbd7e53323fc998ca99378de6fbdcb664)
+### ⚙️ Miscellaneous Tasks
+
+- Update todo list ([9edb217](https://github.com/amasotti/ai-switcher-kt/commit/9edb2174e60e7db9c420d1bca330b94dcb206a9f)) - by _Antonio Masotti_
+
+- Update README.md ([d42be41](https://github.com/amasotti/ai-switcher-kt/commit/d42be41bbd7e53323fc998ca99378de6fbdcb664)) - by _Antonio Masotti_
+
 ## [1.3.0] - 2024-12-30
 
 [Compare with last version](https://github.com/amasotti/ai-switcher-kt/compare/717dad7fd8ae2d8c699c686aeca6425190a280f8..3842428c761363d71c6e482e59eb3fc51ae63d74)
