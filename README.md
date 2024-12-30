@@ -32,16 +32,17 @@ interactions.
 **Pre-requisites**: 
 You will need these (or at least 1) environment variables set:
 
-```
-   DEEPSEEK_API_KEY=your_deepseek_api_key
-   CHATGPT_API_KEY=your_chatgpt_api_key
-   CLAUDE_API_KEY=your_claude_api_key
+```sh
+   export DEEPSEEK_API_KEY=your_deepseek_api_key
+   export CHATGPT_API_KEY=your_chatgpt_api_key
+   export CLAUDE_API_KEY=your_claude_api_key
 ```
 
-```
-# Just use the bash script to start both frontend and backend 
-./start.sh
-```
+   ```bash
+   
+   # Just use the bash script to start both frontend and backend 
+   ./start.sh
+   ```
 
 ## Installation
 
@@ -58,9 +59,9 @@ If you want more control over the installation, you can follow these steps:
 
 
 1. Run the application:
-```bash
-./gradlew bootRun
-```
+   ```bash
+   ./gradlew bootRun
+   ```
 
 ### Frontend
 
