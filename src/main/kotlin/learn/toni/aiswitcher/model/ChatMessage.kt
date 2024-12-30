@@ -14,8 +14,3 @@ enum class Role(@get:JsonValue val value: String) {
     ASSISTANT("assistant")
 }
 
-
-data class OpenAIMessage(
-    val role: String,
-    val content: String
-)

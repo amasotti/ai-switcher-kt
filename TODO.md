@@ -6,6 +6,8 @@
 - [x] Load past conversations
 - [ ] Better support for advanced paramters
 - [x] Other 3 Providers
+- Add [Perplexity AI](https://docs.perplexity.ai/home) 
+
 
 ## Frontend
 

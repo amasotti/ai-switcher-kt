@@ -2,7 +2,6 @@ package learn.toni.aiswitcher.service
 
 import learn.toni.aiswitcher.exceptions.OpenAIException
 import learn.toni.aiswitcher.model.ChatMessage
-import learn.toni.aiswitcher.model.OpenAIMessage
 import learn.toni.aiswitcher.model.api.OpenAIRequest
 import learn.toni.aiswitcher.model.api.OpenAIResponse
 import org.slf4j.LoggerFactory
@@ -56,7 +55,7 @@ class OpenAIProvider(
     ): HttpEntity<OpenAIRequest> {
         val payload = OpenAIRequest(
             model = MODEL,
-            messages = messages.map { OpenAIMessage(it.role.value, it.content) },
+            messages = messages.map { ChatMessage(it.role, it.content) },
             temperature = temperature,
             maxTokens = maxTokens,
             topP = topP
