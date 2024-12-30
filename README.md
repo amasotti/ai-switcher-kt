@@ -59,10 +59,10 @@ interactions.
 
 | Endpoint                          | Method | Description                                   |
 |-----------------------------------|--------|-----------------------------------------------|
-| `/index/create-session`             | POST   | Creates a new chat session.                   |
-| `/index/get-session/{sessionId}`    | GET    | Retrieves a chat session by ID.               |
-| `/index/delete-session/{sessionId}` | POST   | Deletes a chat session by ID.                 |
-| `/index/generate`                   | POST   | Sends a prompt to the AI and gets a response. |
+| `/api/create-session`             | POST   | Creates a new chat session.                   |
+| `/api/get-session/{sessionId}`    | GET    | Retrieves a chat session by ID.               |
+| `/api/delete-session/{sessionId}` | POST   | Deletes a chat session by ID.                 |
+| `/api/generate`                   | POST   | Sends a prompt to the AI and gets a response. |
 
 ---
 
@@ -111,6 +111,8 @@ interactions.
 ## API Docs:
 
 - [DeepSeek API](https://api-docs.deepseek.com/api/deepseek-api)
+- [Claude / Anthropic](https://docs.anthropic.com/en/api/getting-started)
+- [ChatGPT API](https://platform.openai.com/docs/overview)
 
 ## Acknowledgments
 
