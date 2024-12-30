@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file (created with git cliff).
 
+## [1.3.0] - 2024-12-30
+
+[Compare with last version](https://github.com/amasotti/ai-switcher-kt/compare/717dad7fd8ae2d8c699c686aeca6425190a280f8..3842428c761363d71c6e482e59eb3fc51ae63d74)
+### 🚀 Features
+
+- Implement delete session ([027075f](https://github.com/amasotti/ai-switcher-kt/commit/027075f0306cb937c7b079bd0467991929f83da4)) - by _Antonio Masotti_
+
+- Implement OpenAI provider ([3842428](https://github.com/amasotti/ai-switcher-kt/commit/3842428c761363d71c6e482e59eb3fc51ae63d74)) - by _Antonio Masotti_
+
+### 🐛 Bug Fixes
+
+- Pass system prompts to anthropic ([7d717d2](https://github.com/amasotti/ai-switcher-kt/commit/7d717d2878bca3ccb0d7d9e286795de421d6593e)) - by _Antonio Masotti_
+
+### ⚙️ Miscellaneous Tasks
+
+- Run formatter ([fedbc39](https://github.com/amasotti/ai-switcher-kt/commit/fedbc398ee733032477a94ea94621ed913a1ed97)) - by _Antonio Masotti_
+
 ## [1.2.0] - 2024-12-30
 
 [Compare with last version](https://github.com/amasotti/ai-switcher-kt/compare/cd413ffa983b0b9845b788535b038922ff6cb520..717dad7fd8ae2d8c699c686aeca6425190a280f8)
