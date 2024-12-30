@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component
 @Component
 class AIServiceLocator(
     private val deepSeekProvider: DeepSeekProvider,
-    private val openAIProvider: OpenAIProvidder,
+    private val openAIProvider: OpenAIProvider,
     private val anthropicProvider: AnthropicProvider
 ) {
     fun getService(apiName: String): AIServiceProvider {

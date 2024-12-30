@@ -15,6 +15,10 @@ check_env_vars() {
         echo "Error: ANTHROPIC_API_KEY is not set"
         missing=1
     fi
+    if [ -z "$OPENAI_ORGANIZATION" ]; then
+        echo "Error: OPENAI_ORGANIZATION is not set"
+        missing=1
+    fi
 
     if [ $missing -eq 1 ]; then
         exit 1

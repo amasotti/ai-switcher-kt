@@ -3,6 +3,7 @@ package learn.toni.aiswitcher.model.api
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import learn.toni.aiswitcher.model.ChatMessage
+import learn.toni.aiswitcher.model.OpenAIMessage
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class DeepSeekResponse(
@@ -30,4 +31,36 @@ data class Response(
     val message: ChatMessage,
     val logprobs: Any?,
     @JsonProperty("finish_reason") val finishReason: String
+)
+
+//------------------------------------------------------------
+
+// in models/OpenAIResponse.kt
+data class OpenAIResponse(
+    val id: String,
+    val `object`: String,
+    val created: Long,
+    val model: String,
+    val usage: OpenAIUsage,
+    val choices: List<OpenAIChoice>
+)
+
+data class OpenAIUsage(
+    @JsonProperty("prompt_tokens") val promptTokens: Int,
+    @JsonProperty("completion_tokens") val completionTokens: Int,
+    @JsonProperty("total_tokens") val totalTokens: Int,
+    @JsonProperty("completion_tokens_details") val completionTokensDetails: CompletionTokensDetails
+)
+
+data class CompletionTokensDetails(
+    @JsonProperty("reasoning_tokens") val reasoningTokens: Int,
+    @JsonProperty("accepted_prediction_tokens") val acceptedPredictionTokens: Int,
+    @JsonProperty("rejected_prediction_tokens") val rejectedPredictionTokens: Int
+)
+
+data class OpenAIChoice(
+    val message: OpenAIMessage,
+    val logprobs: Any?,
+    @JsonProperty("finish_reason") val finishReason: String,
+    val index: Int
 )
