@@ -143,9 +143,6 @@ If you want more control over the installation, you can follow these steps:
 
 ## Acknowledgments
 
-- **Spring Boot**: For the robust and scalable backend framework.
-- **Kotlin**: For the concise and expressive programming language.
-- **Bootstrap**: For the responsive and clean UI components.
 - **DeepSeek, OpenAI, Anthropic**: For their Generative AI APIs.
 
 ---
