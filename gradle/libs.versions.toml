@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.0.10"
+kotlin = "2.1.0"
 detekt = "1.23.7"
 junitPlatform = "1.11.4"
 springBoot = "3.4.1"
